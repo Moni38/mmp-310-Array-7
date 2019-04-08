@@ -1,32 +1,47 @@
-//MMP310 Class Particles
-//var particle;
-
-var particles = new Array();
+/* 
+week 7 MMP 310 Sun
+*/
+var sun = []; //circles
 
 function setup() {
-	createCanvas(800,500);
-	//particle = new Particle();
-	//particles.push(particle);
+    createCanvas(windowWidth, windowHeight);
+  
 }
 
 function draw() {
-  background(50);
+    background(75);
 
-  //particles emitted from our mouse position
-  var p = new Particle(mouseX, mouseY);
-  particles.push(p);
-
-  //LOOP BACKWARD THROUGH OUR PARTICLE ARRAY
-  for (var i=particles.length-1; i>=0; 	i--){
-  	particles[i].update();
-  	particles[i].display();
-  	if ( particles[i].checkDead() ){
-  		particles.splice(particles[i],1);
-  	}
-  }
+    for (let i = 0; i < sun.length; i++) {
+		drawSun(sun[i][0], sun[i][1],sun[i][2]);
+		sun[i][1] += 3;
+    }
+    
 }
 
-function mousePressed(){
-	var p = new Particle();
-	particles.push(p);
+    
+function mousePressed() {
+    let c = "#f55890";
+    if (mouseX > width/2){
+        c = "yellow";
+    }
+	sun.push([mouseX, mouseY, c]);
+   
 }
+
+
+
+function drawSun(x, y, color) {
+
+    fill(color);
+    ellipse(x, y, 100); // circle
+    stroke(10);
+    fill(random(50,100));
+    
+}
+
+
+
+function drawText(text) {
+  text(text, storyX, storyY);
+}
+    
